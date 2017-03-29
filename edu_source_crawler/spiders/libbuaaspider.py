@@ -61,7 +61,7 @@ class LibBuaaspiderSpider(scrapy.Spider):
         item['publish_house'] = publish_info[0]
         item['publish_year'] = publish_info[-1]
         isbn = response.xpath(u'//dt[text()="ISBN及定价:"]/following::*[1]/text()').extract_first()
-        item['isbn'] = isbn.split('/')[0]
+        item['isbn'] = isbn.split('/')[0] if isbn else None
         tds = response.xpath('//tr[@class="whitetext"]/td')
         for index, td in enumerate(tds):
             if index == 0:
