@@ -23,16 +23,16 @@ class Open163Spider(scrapy.Spider):
         for index, i in enumerate(keywords):
             for keyword in i:
                 body = """
-    callCount=1
-    scriptSessionId=${scriptSessionId}190
-    httpSessionId=
-    c0-scriptName=OpenSearchBean
-    c0-methodName=searchCourse
-    c0-id=0
-    c0-param0=string: %s
-    c0-param1=number:1
-    c0-param2=number:2000
-    batchId=1490864754815
+callCount=1
+scriptSessionId=${scriptSessionId}190
+httpSessionId=
+c0-scriptName=OpenSearchBean
+c0-methodName=searchCourse
+c0-id=0
+c0-param0=string: %s
+c0-param1=number:1
+c0-param2=number:2000
+batchId=1490864754815
                 """ % urllib.quote(keyword)
                 request = scrapy.Request(url=self.search_url, callback=self.parse1, method='POST', body=body)
                 request.meta['course_type'] = index
