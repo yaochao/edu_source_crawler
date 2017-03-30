@@ -29,3 +29,10 @@ class LibBuaaItem(Item):
     sushuhao = Field()
     guancang = Field()
     book_status = Field()
+
+class WanfangItem(Item):
+    _id = Field()
+    title = Field()
+    subtitle = Field()
+    url = Field()
+    course_type = Field()

@@ -50,3 +50,22 @@ class LibBuaaMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
+class WanfangMongoPipeline(object):
+    def __init__(self):
+        self.client = pymongo.MongoClient(
+            settings['MONGO_HOST'],
+            settings['MONGO_PORT']
+        )
+        self.db = self.client['edu_source']
+        self.collection = self.db['wanfang']
+
+    def process_item(self, item, spider):
+        try:
+            self.collection.insert(dict(item))
+        except Exception as e:
+            logger.error(e)
+        return item
+
+    def close_spider(self, spider):
+        self.client.close()
