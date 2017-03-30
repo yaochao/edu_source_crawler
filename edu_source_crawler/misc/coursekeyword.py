@@ -20,3 +20,7 @@ keywords = [
     ['航空气象'],
     ['领航'],
 ]
+
+baikekeywords = [
+    '李椿萱',
+]

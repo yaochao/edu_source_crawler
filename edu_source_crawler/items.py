@@ -36,3 +36,22 @@ class WanfangItem(Item):
     subtitle = Field()
     url = Field()
     course_type = Field()
+
+
+class BaidubaikeItem(Item):
+    _id = Field()
+    title = Field()
+    url = Field()
+    header_text = Field()
+    body_text = Field()
+    keyword = Field()
+    html_source = Field()
+
+
+class Open163Item(Item):
+    _id = Field()
+    title = Field()
+    description = Field()
+    url = Field()
+    img_url = Field()
+    course_type = Field()

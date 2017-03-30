@@ -69,3 +69,41 @@ class WanfangMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
+class BaidubaikeMongoPipeline(object):
+    def __init__(self):
+        self.client = pymongo.MongoClient(
+            settings['MONGO_HOST'],
+            settings['MONGO_PORT']
+        )
+        self.db = self.client['edu_source']
+        self.collection = self.db['baidubaike']
+
+    def process_item(self, item, spider):
+        try:
+            self.collection.insert(dict(item))
+        except Exception as e:
+            logger.error(e)
+        return item
+
+    def close_spider(self, spider):
+        self.client.close()
+
+class Open163MongoPipeline(object):
+    def __init__(self):
+        self.client = pymongo.MongoClient(
+            settings['MONGO_HOST'],
+            settings['MONGO_PORT']
+        )
+        self.db = self.client['edu_source']
+        self.collection = self.db['open163']
+
+    def process_item(self, item, spider):
+        try:
+            self.collection.insert(dict(item))
+        except Exception as e:
+            logger.error(e)
+        return item
+
+    def close_spider(self, spider):
+        self.client.close()
