@@ -4,8 +4,10 @@
 import copy
 
 import scrapy
-from edu_source_crawler.misc.coursekeyword import baikekeywords
+
 from edu_source_crawler.items import BaidubaikeItem
+from edu_source_crawler.misc.coursekeyword import baikekeywords
+
 
 class BaidubaikeSpider(scrapy.Spider):
     name = 'baidubaike'
@@ -29,7 +31,8 @@ class BaidubaikeSpider(scrapy.Spider):
         item = response.meta['item']
         item['_id'] = response.url
         item['url'] = response.url
-        item['header_text'] = response.xpath('//div[@label-module="lemmaSummary"]')[0].xpath('string(.)').extract_first()
+        item['header_text'] = response.xpath('//div[@label-module="lemmaSummary"]')[0].xpath(
+            'string(.)').extract_first()
         paras = response.xpath('//div[@class="main-content"]/div[@label-module="para"]')
         body_text = ''
         for para in paras:
