@@ -17,10 +17,6 @@ class LibBuaaspiderSpider(scrapy.Spider):
         'ITEM_PIPELINES': {
             'edu_source_crawler.pipelines.LibBuaaMongoPipeline': 300,
         },
-        'DOWNLOADER_MIDDLEWARES': {
-            'edu_source_crawler.misc.middlewares.UserAgentMiddleware': 400,
-        },
-        'DOWNLOAD_TIMEOUT': 10,
     }
 
     def start_requests(self):
