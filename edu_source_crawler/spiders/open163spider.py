@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Created by yaochao on 2017/3/30
-import copy
+import re
 import urllib
 
 import scrapy
-import re
+
 from edu_source_crawler.items import Open163Item
 from edu_source_crawler.misc.coursekeyword import keywords
 
@@ -21,23 +21,22 @@ class Open163Spider(scrapy.Spider):
 
     def start_requests(self):
         for index, i in enumerate(keywords):
-            if index == 0:
-                for keyword in i:
-                    body = """
-callCount=1
-scriptSessionId=${scriptSessionId}190
-httpSessionId=
-c0-scriptName=OpenSearchBean
-c0-methodName=searchCourse
-c0-id=0
-c0-param0=string: %s
-c0-param1=number:1
-c0-param2=number:2000
-batchId=1490864754815
-                    """ % urllib.quote(keyword)
-                    request = scrapy.Request(url=self.search_url, callback=self.parse1, method='POST', body=body)
-                    request.meta['course_type'] = index
-                    yield request
+            for keyword in i:
+                body = """
+    callCount=1
+    scriptSessionId=${scriptSessionId}190
+    httpSessionId=
+    c0-scriptName=OpenSearchBean
+    c0-methodName=searchCourse
+    c0-id=0
+    c0-param0=string: %s
+    c0-param1=number:1
+    c0-param2=number:2000
+    batchId=1490864754815
+                """ % urllib.quote(keyword)
+                request = scrapy.Request(url=self.search_url, callback=self.parse1, method='POST', body=body)
+                request.meta['course_type'] = index
+                yield request
 
     def parse1(self, response):
         course_type = response.meta['course_type']
@@ -45,7 +44,7 @@ batchId=1490864754815
         totleCount = int(re.findall(r'totleCount=(.*?);', body)[0])
         if totleCount == 0:
             return
-        for i in range(2, totleCount+2):
+        for i in range(2, totleCount + 2):
             item2 = Open163Item()
             item2['course_type'] = course_type
             img_url = re.findall(r's%s.bigPicUrl="(.*?)"' % i, body)[0]
