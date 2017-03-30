@@ -15,7 +15,7 @@ class Open163Spider(scrapy.Spider):
     search_url = 'https://c.open.163.com/dwr/call/plaincall/OpenSearchBean.searchCourse.dwr'
     custom_settings = {
         'ITEM_PIPELINES': {
-            'edu_source_crawler.pipelines.BaidubaikeMongoPipeline': 300,
+            'edu_source_crawler.pipelines.Open163MongoPipeline': 300,
         },
     }
 
