@@ -55,3 +55,11 @@ class Open163Item(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+
+class KeqqItem(Item):
+    _id = Field()
+    title = Field()
+    description = Field()
+    url = Field()
+    img_url = Field()
+    course_type = Field()
