@@ -30,6 +30,7 @@ class LibBuaaItem(Item):
     guancang = Field()
     book_status = Field()
 
+
 class WanfangItem(Item):
     _id = Field()
     title = Field()
@@ -56,6 +57,7 @@ class Open163Item(Item):
     img_url = Field()
     course_type = Field()
 
+
 class KeqqItem(Item):
     _id = Field()
     title = Field()
@@ -63,3 +65,22 @@ class KeqqItem(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+
+
+class TedItem(Item):
+    _id = Field()
+    title = Field()
+    description = Field()
+    url = Field()
+    img_url = Field()
+    course_type = Field()
+
+class It199Item(Item):
+    _id = Field()
+    title = Field()
+    description = Field()
+    url = Field()
+    img_url = Field()
+    course_type = Field()
+    amount = Field()
+    timestamp = Field()
