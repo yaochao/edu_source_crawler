@@ -19,10 +19,14 @@ class BuaaMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['buaa']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -39,10 +43,14 @@ class LibBuaaMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['lib_buaa']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -58,10 +66,14 @@ class WanfangMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['wanfang']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -77,10 +89,14 @@ class BaidubaikeMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['baidubaike']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -96,10 +112,14 @@ class Open163MongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['open163']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -115,10 +135,14 @@ class KeqqMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['keqq']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -134,10 +158,14 @@ class TedMongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['ted']
+        self.index = 1
 
     def process_item(self, item, spider):
+        item['index'] = self.index
+        self.index += 1
+        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -153,13 +181,13 @@ class It199MongoPipeline(object):
             settings['MONGO_HOST'],
             settings['MONGO_PORT']
         )
-        self.db = self.client['edu_source']
+        self.db = self.client['edu_source2']
         self.collection = self.db['it199']
-        self.amount = 1
+        self.index = 1
 
     def process_item(self, item, spider):
-        item['amount'] = self.amount
-        self.amount += 1
+        item['index'] = self.index
+        self.index += 1
         item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
         try:
             self.collection.insert(dict(item))

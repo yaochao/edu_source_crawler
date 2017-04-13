@@ -34,6 +34,11 @@ class LibBuaaspiderSpider(scrapy.Spider):
         lis = response.xpath('//*[@id="search_book_list"]/li')
         for li in lis:
             title = li.xpath('h3/a/text()').extract_first()
+            book_type = li.xpath('h3/span/text()').extract_first()
+            if book_type and u'期刊' in book_type:
+                item['book_type'] = 2
+            else:
+                item['book_type'] = 1
             num = title.split(u'.')[0] + u'.'
             item['title'] = title.split(num)[-1]
             item['url'] = response.urljoin(li.xpath('h3/a/@href').extract_first())

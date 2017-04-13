@@ -30,7 +30,8 @@ class BuaaspiderSpider(scrapy.Spider):
             yield request
 
         # next page
-        for i in range(1, 80):
+        total_page = response.xpath('//div[@class="page auto"]/text()').extract()[-1].strip().split('/')[-1]
+        for i in range(1, total_page):
             next_url = 'http://news.buaa.edu.cn/xswh/index' + str(i) + '.htm'
             yield Request(next_url)
 

@@ -15,6 +15,8 @@ class BuaaItem(Item):
     html_source = Field()
     html_text = Field()
     type = Field()
+    index = Field()
+    timestamp = Field()
 
 
 class LibBuaaItem(Item):
@@ -29,6 +31,9 @@ class LibBuaaItem(Item):
     sushuhao = Field()
     guancang = Field()
     book_status = Field()
+    index = Field()
+    timestamp = Field()
+    book_type = Field()
 
 
 class WanfangItem(Item):
@@ -37,16 +42,22 @@ class WanfangItem(Item):
     subtitle = Field()
     url = Field()
     course_type = Field()
+    index = Field()
+    timestamp = Field()
 
 
 class BaidubaikeItem(Item):
     _id = Field()
     title = Field()
     url = Field()
+    img_url = Field()
     header_text = Field()
     body_text = Field()
     keyword = Field()
     html_source = Field()
+    index = Field()
+    timestamp = Field()
+    course_type = Field()
 
 
 class Open163Item(Item):
@@ -56,6 +67,8 @@ class Open163Item(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+    index = Field()
+    timestamp = Field()
 
 
 class KeqqItem(Item):
@@ -65,6 +78,8 @@ class KeqqItem(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+    index = Field()
+    timestamp = Field()
 
 
 class TedItem(Item):
@@ -74,6 +89,8 @@ class TedItem(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+    index = Field()
+    timestamp = Field()
 
 class It199Item(Item):
     _id = Field()
@@ -82,5 +99,5 @@ class It199Item(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
-    amount = Field()
+    index = Field()
     timestamp = Field()
