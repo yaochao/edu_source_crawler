@@ -5,13 +5,14 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import logging
+import time
 
 import pymongo
 from scrapy.utils import project
-import datetime, time
 
 settings = project.get_project_settings()
 logger = logging.getLogger(__name__)
+
 
 class BuaaMongoPipeline(object):
     def __init__(self):
@@ -26,7 +27,7 @@ class BuaaMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -50,7 +51,7 @@ class LibBuaaMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -59,6 +60,7 @@ class LibBuaaMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class WanfangMongoPipeline(object):
     def __init__(self):
@@ -73,7 +75,7 @@ class WanfangMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -82,6 +84,7 @@ class WanfangMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class BaidubaikeMongoPipeline(object):
     def __init__(self):
@@ -96,7 +99,7 @@ class BaidubaikeMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -105,6 +108,7 @@ class BaidubaikeMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class Open163MongoPipeline(object):
     def __init__(self):
@@ -119,7 +123,7 @@ class Open163MongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -128,6 +132,7 @@ class Open163MongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class KeqqMongoPipeline(object):
     def __init__(self):
@@ -142,7 +147,7 @@ class KeqqMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -151,6 +156,7 @@ class KeqqMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class TedMongoPipeline(object):
     def __init__(self):
@@ -165,7 +171,7 @@ class TedMongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
@@ -174,6 +180,7 @@ class TedMongoPipeline(object):
 
     def close_spider(self, spider):
         self.client.close()
+
 
 class It199MongoPipeline(object):
     def __init__(self):
@@ -188,7 +195,7 @@ class It199MongoPipeline(object):
     def process_item(self, item, spider):
         item['index'] = self.index
         self.index += 1
-        item['timestamp'] = int(time.mktime(datetime.datetime.now().timetuple()))
+        item['timestamp'] = int(time.time())
         try:
             self.collection.insert(dict(item))
         except Exception as e:
