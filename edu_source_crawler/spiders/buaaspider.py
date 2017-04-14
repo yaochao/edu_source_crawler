@@ -31,7 +31,8 @@ class BuaaspiderSpider(scrapy.Spider):
 
         # next page
         total_page = response.xpath('//div[@class="page auto"]/text()').extract()[-1].strip().split('/')[-1]
-        for i in range(1, total_page):
+        for i in range(1, int(total_page)):
+            print 'page-%s' % i
             next_url = 'http://news.buaa.edu.cn/xswh/index' + str(i) + '.htm'
             yield Request(next_url)
 
@@ -39,22 +40,22 @@ class BuaaspiderSpider(scrapy.Spider):
         item = response.meta['item']
         item['html_source'] = response.xpath('//*[@class="newsleftconbox auto"]').extract_first()
         item['html_text'] = response.xpath('//*[@class="newsleftconbox auto"]').xpath('string(.)').extract_first()
-        item['type'] = self.map_type(item['title'])
+        item['type'] = self.map_type(item['html_text'])
         if item['type']:
             yield item
 
     def map_type(self, title):
-        type1 = [u'飞行', u'空中领航', u'飞机']
-        type2 = [u'大赛', u'讲座', u'学生会', u'社团']
-        type3 = [u'实习', u'就业', u'招聘']
-        for i in type1:
+        type1 = [u'学术活动', u'大家谈', u'学术报告', u'主题报告', u'院士茶座', u'讲座', u'大讲堂', u'学术论坛']
+        type2 = [u'音乐厅', u'学生会', u'话剧']
+        type3 = [u'创业', u'就业', u'招聘', u'实习', u'考研', u'公务员', u'专场']
+        for i in type3:
             if i in title:
-                return 1
+                return 3
 
         for i in type2:
             if i in title:
                 return 2
 
-        for i in type3:
+        for i in type1:
             if i in title:
-                return 3
+                return 1
