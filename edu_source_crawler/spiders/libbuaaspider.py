@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 # Created by yaochao on 2017/3/29
 import copy
-
+import logging
 import scrapy
 from scrapy import Request
 
 from edu_source_crawler.items import LibBuaaItem
 from edu_source_crawler.misc.coursekeyword import keywords
+
+logger = logging.Logger(__name__)
 
 
 class LibBuaaspiderSpider(scrapy.Spider):
@@ -43,6 +45,13 @@ class LibBuaaspiderSpider(scrapy.Spider):
             item['title'] = title.split(num)[-1]
             item['url'] = response.urljoin(li.xpath('h3/a/@href').extract_first())
             item['_id'] = item['url']
+            try:
+                item['book_guancang_count'] = int(li.xpath('p/span')[0].xpath('string(.)').extract_first().split()[0][-1])
+                item['book_kejie_count'] = int(li.xpath('p/span')[0].xpath('string(.)').extract_first().split()[1][-1])
+            except Exception as e:
+                item['book_guancang_count'] = None
+                item['book_kejie_count'] = None
+                logger.error(e)
             request = Request(item['url'], self.parse_detail)
             request.meta['item'] = copy.deepcopy(item)
             yield request
@@ -56,7 +65,7 @@ class LibBuaaspiderSpider(scrapy.Spider):
     def parse_detail(self, response):
         item = response.meta['item']
         author = response.xpath(u'//dt[text()="题名/责任者:"]/following::*[1]/text()').extract_first()
-        item['author'] = author.split('/')[-1]
+        item['author'] = author.split('/')[-1] if author else None
         publish_info = response.xpath(u'//dt[text()="出版发行项:"]/following::*[1]/text()').extract_first()
         publish_info = publish_info.split(':')[-1].split(',')
         item['publish_house'] = publish_info[0]

@@ -34,6 +34,8 @@ class LibBuaaItem(Item):
     index = Field()
     timestamp = Field()
     book_type = Field()
+    book_guancang_count = Field()  # 馆藏副本
+    book_kejie_count = Field()  # 可借副本
 
 
 class WanfangItem(Item):
@@ -67,6 +69,7 @@ class Open163Item(Item):
     url = Field()
     img_url = Field()
     course_type = Field()
+    course_source = Field()
     index = Field()
     timestamp = Field()
 
@@ -91,6 +94,7 @@ class TedItem(Item):
     course_type = Field()
     index = Field()
     timestamp = Field()
+
 
 class It199Item(Item):
     _id = Field()

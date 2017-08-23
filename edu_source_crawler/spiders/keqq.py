@@ -30,7 +30,7 @@ class KeqqSpider(scrapy.Spider):
         for li in lis:
             item = KeqqItem()
             item['course_type'] = course_type
-            item['url'] = 'https:' + li.xpath('a/@href').extract_first().strip()
+            item['url'] = li.xpath('a/@href').extract_first().strip()
             item['_id'] = item['url']
             item['img_url'] = 'https:' + li.xpath('a/img/@src').extract_first().strip()
             item['title'] = li.xpath('a/img/@alt').extract_first()

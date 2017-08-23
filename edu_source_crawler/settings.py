@@ -14,6 +14,7 @@ BOT_NAME = 'edu_source_crawler'
 SPIDER_MODULES = ['edu_source_crawler.spiders']
 NEWSPIDER_MODULE = 'edu_source_crawler.spiders'
 
+# MONGO_HOST = '127.0.0.1'
 MONGO_HOST = '192.168.39.26'
 MONGO_PORT = 27017
 DOWNLOAD_TIMEOUT = 10

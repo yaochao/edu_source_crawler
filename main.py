@@ -4,4 +4,4 @@
 
 from scrapy import cmdline
 
-cmdline.execute('scrapy crawl buaa'.split())
+cmdline.execute('scrapy crawl libbuaa'.split())
